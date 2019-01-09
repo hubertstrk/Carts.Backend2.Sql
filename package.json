@@ -16,8 +16,10 @@
     "express"
   ],
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "~3.1.0",
     "jade": "*",
-    "express": "~3.1.0"
+    "tedious": "^3.0.1"
   },
   "noAnalyze": true,
   "license": "Apache",

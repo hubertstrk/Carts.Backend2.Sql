@@ -5,9 +5,11 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , cors = require('cors')
+  , matter = require('./routes/matter')
+  , groceries = require('./routes/groceries');
 
 var app = express();
 
@@ -17,6 +19,7 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(express.logger('dev'));
+  app.use(cors());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -28,7 +31,14 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+
+app.get('/matter', matter.all)
+app.post('/matter/:name', matter.add)
+app.delete('/matter/:id', matter.delete)
+
+app.get('/groceries', groceries.all)
+app.post('/groceries/:name', groceries.add)
+app.delete('/groceries/:id', groceries.delete)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
