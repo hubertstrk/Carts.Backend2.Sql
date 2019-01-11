@@ -15,7 +15,7 @@ exports.delete = function (req, res) {
 }
 
 exports.add = function (req, res) {
-  db.execute(`INSERT INTO matters (Name) VALUES ('${req.params.name}')`)
+  db.execute(`INSERT INTO matters (Name) VALUES ('${req.body.name}')`)
   .then((result) => {
     res.send(result) 
   })

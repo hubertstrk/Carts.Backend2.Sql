@@ -32,12 +32,12 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 
-app.get('/matter', matter.all)
-app.post('/matter/:name', matter.add)
-app.delete('/matter/:id', matter.delete)
+app.get('/matters', matter.all)
+app.post('/matters', matter.add)
+app.delete('/matters/:id', matter.delete)
 
 app.get('/groceries', groceries.all)
-app.post('/groceries/:name', groceries.add)
+app.post('/groceries', groceries.add)
 app.delete('/groceries/:id', groceries.delete)
 
 http.createServer(app).listen(app.get('port'), function(){
