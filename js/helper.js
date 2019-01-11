@@ -1,7 +1,7 @@
 exports.convert = (result) => {
-  const arr = []
+  var arr = []
   result.forEach((row) => {
-    const obj = {}
+    var obj = {}
     row.forEach((column) => {
       obj[column.metadata.colName] = column.value
     })

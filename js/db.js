@@ -1,9 +1,11 @@
-const Request = require('tedious').Request
-const Connection = require('tedious').Connection
-const helper = require('./helper')
-const sensitive = require('../sensitive')
+'use strict'
 
-const config = {
+var Request = require('tedious').Request
+var Connection = require('tedious').Connection
+var helper = require('./helper')
+var sensitive = require('../sensitive')
+
+var config = {
   userName: sensitive.username,
   password: sensitive.password,
   server: sensitive.server,
@@ -19,12 +21,12 @@ exports.execute = function (query) {
 
   console.info(query)
   return new Promise(function(resolve, reject) {
-    const connection = new Connection(config)
+    var connection = new Connection(config)
     connection.on('connect', function (err) {
       if (err) {
         reject(err)
       } else {
-        const request = new Request(query, 
+        var request = new Request(query, 
           function (err, rowCount, rows) {
             if (err) {
               resolve(err)
@@ -40,7 +42,7 @@ exports.execute = function (query) {
   })
 }
 
-const displayResult = (columns) => {
+var displayResult = (columns) => {
   columns.forEach(function (column) {
     console.log("%s\t%s", column.metadata.colName, column.value);
   });
