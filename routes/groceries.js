@@ -15,7 +15,7 @@ exports.delete = function (req, res) {
 }
 
 exports.add = function (req, res) {
-  db.execute(`INSERT INTO groceries (Name) VALUES ('${req.body.name}')`)
+  db.execute(`INSERT INTO groceries (Name) VALUES ('${req.body.name}'); SELECT SCOPE_IDENTITY();`)
   .then((result) => {
     res.send(result) 
   });
